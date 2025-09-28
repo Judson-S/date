@@ -1,8 +1,8 @@
 ﻿
-
-TEST(DefaultCtor, HasCorrectValue)
+int main()
 {
-	Date 
+	
 }
+
 
 
