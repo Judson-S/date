@@ -11,12 +11,12 @@ endif()
 
 project ("date")
 
-# Include sub-projects.
-add_subdirectory ("date_")
+# Include sub-projects
 
 add_subdirectory("date_test")
 
 add_subdirectory("date")
+
 # GoogleTest library
 # See: https://github.com/google/googletest/blob/master/googletest/README.md
 
