@@ -1,0 +1,8 @@
+﻿
+
+TEST(DefaultCtor, HasCorrectValue)
+{
+	Date 
+}
+
+
