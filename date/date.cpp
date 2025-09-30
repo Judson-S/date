@@ -14,11 +14,11 @@ util::Date::Date(int day, int month, int year)
 	{
 		throw util::Date::Invalid{ day, month + 1, year + 1900};
 	}
-	else if (month > 12 || month < 1)
+	if (month > 12 || month < 1)
 	{
 		throw util::Date::Invalid{ day, month + 1, year + 1900};
 	}
-	else if (year < 1970)
+	if (year < 1970)
 	{
 		throw util::Date::Invalid{ day, month + 1, year + 1900};
 	}
