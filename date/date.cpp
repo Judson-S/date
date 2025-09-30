@@ -5,7 +5,7 @@ util::Date::Date()
 	tm new_date{};
 	new_date.tm_mday = 1;
 	new_date.tm_mon = 0;
-	new_date.tm_year = 1970;
+	new_date.tm_year = 70;
 
 	full_date = new_date;
 }
@@ -42,13 +42,13 @@ void util::Date::day(int value)
 
 int util::Date::month() const
 {
-	return full_date.tm_mon;
+	return full_date.tm_mon  + 1;
 }
 void util::Date::month(int value)
 {
 	time_t curr_time = 0;
 	tm tm_month = *localtime(&curr_time);
-	tm_month.tm_mon = value;
+	tm_month.tm_mon = value - 1;
 	tm_month.tm_isdst = -1;
 	time_t new_month = mktime(&tm_month);
 
@@ -59,13 +59,13 @@ void util::Date::month(int value)
 
 int util::Date::year() const
 {
-	return full_date.tm_year;
+	return full_date.tm_year + 1900;
 }
 void util::Date::year(int value)
 {
 	time_t curr_time = 0;
 	tm tm_year = *localtime(&curr_time);
-	tm_year.tm_year = value;
+	tm_year.tm_year = value - 1900;
 	tm_year.tm_isdst = -1;
 	time_t new_year = mktime(&tm_year);
 

@@ -4,6 +4,7 @@
 TEST(DefaultCtor, HasCorrectValue)
 {
 	util::Date date;
-	time_t year = date.year();
+	ASSERT_EQ(date.day(), 1);
+	ASSERT_EQ(date.month(), 1);
 	ASSERT_EQ(date.year(), 1970);
 }
