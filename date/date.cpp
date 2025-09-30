@@ -116,7 +116,11 @@ void util::Date::year(int value)
 	_day = new_year;
 }
 
-void util::Date::advance(int value = 1)
+void util::Date::advance()
+{
+	_day += 24 * 60 * 60;
+}
+void util::Date::advance(int value)
 {
 	_day += value * 24 * 60 * 60;
 }

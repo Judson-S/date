@@ -18,6 +18,7 @@ namespace util {
 		time_t year();
 		void year(int value);
 
+		void advance();
 		void advance(int value);
 
 		enum class Order {
