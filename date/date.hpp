@@ -26,7 +26,7 @@ namespace util {
 			DayMonthYear,
 			YearMonthDay
 		};
-
+		
 		void print(std::ostream& out);
 
 		static Date now();
@@ -59,7 +59,8 @@ namespace util {
 
 		monthNameClass monthName();
 		dayNameClass dayName();
-		static Order _order;
+		static Order order;
+		static char separator;
 	private:
 		time_t _day, _month, _year;
 		tm full_date;

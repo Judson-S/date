@@ -127,21 +127,21 @@ void util::Date::advance(int value)
 
 void util::Date::print(std::ostream& out)
 {
-	switch (_order)
+	switch (order)
 	{
 	case Order::MonthDayYear:
 	{
-		out << full_date.tm_mon << full_date.tm_mday << full_date.tm_year << "\n";
+		out << full_date.tm_mon << separator << full_date.tm_mday << separator << full_date.tm_year;
 		break;
 	}
 	case Order::DayMonthYear:
 	{
-		out << full_date.tm_mday << full_date.tm_mon << full_date.tm_year << "\n";
+		out << full_date.tm_mday << separator << full_date.tm_mon << separator << full_date.tm_year;
 		break;
 	}
 	case Order::YearMonthDay:
 	{
-		out << full_date.tm_year << full_date.tm_mon << full_date.tm_mday << "\n";
+		out << full_date.tm_year << separator << full_date.tm_mon << separator << full_date.tm_mday;
 		break;
 	}
 	}
@@ -163,3 +163,5 @@ util::Date::dayNameClass util::Date::dayName()
 {
 	return static_cast<dayNameClass>(full_date.tm_wday);
 }
+util::Date::Order util::Date::order = Order::DayMonthYear;
+char util::Date::separator = '/';
