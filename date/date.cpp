@@ -9,15 +9,25 @@ util::Date::Date()
 
 	full_date = new_date;
 }
+void util::Date::is_Valid(tm tm_value)
+{
+	int day = tm_value.tm_mday;
+	int month = tm_value.tm_mon;
+	int year = tm_value.tm_year;
 
-
+	mktime(&tm_value);
+	if (tm_value.tm_mday == day || tm_value.tm_mon == month || tm_value.tm_year == year)
+	{
+		throw util::Date::Invalid{ day,month + 1,year + 1900};
+	}
+}
 
 util::Date::Date(int day, int month, int year)
 {
 	tm new_date{};
 	new_date.tm_mday = day;
-	new_date.tm_mon = month;
-	new_date.tm_mon = year;
+	new_date.tm_mon = month - 1;
+	new_date.tm_mon = year - 1900;
 	new_date.tm_isdst = -1;
 	util::Date::is_Valid(new_date);
 	full_date = new_date;
