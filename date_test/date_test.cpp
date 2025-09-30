@@ -1,8 +1,8 @@
-﻿
-int main()
+﻿#include "gtest"
+#include "gtest.h"
+
+
+TEST(DefaultCtor, HasCorrectValue)
 {
-	
+
 }
-
-
-
