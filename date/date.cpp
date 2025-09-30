@@ -37,7 +37,7 @@ void util::Date::day(int value)
 
 	util::Date::is_Valid(*localtime(&new_day));
 
-	_day = new_day;
+	full_date.tm_mday = new_day;
 }
 
 int util::Date::month() const
@@ -54,7 +54,7 @@ void util::Date::month(int value)
 
 	util::Date::is_Valid(*localtime(&new_month));
 
-	_day = new_month;
+	full_date.tm_mon = new_month;
 }
 
 int util::Date::year() const
@@ -71,7 +71,7 @@ void util::Date::year(int value)
 
 	util::Date::is_Valid(*localtime(&new_year));
 
-	_day = new_year;
+	full_date.tm_year = new_year;
 }
 
 void util::Date::advance()
