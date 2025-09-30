@@ -2,68 +2,26 @@
 
 util::Date::Date()
 {
-	time_t default_t = 0;
-	full_date = *localtime(&default_t);
-	_day = full_date.tm_mday;
-	_month = full_date.tm_mon + 1;
-	_year = full_date.tm_year + 1900;
+	tm new_date{};
+	new_date.tm_mday = 1;
+	new_date.tm_mon = 0;
+	new_date.tm_year = 1970;
+
+	full_date = new_date;
 }
+
+
+
 util::Date::Date(int day, int month, int year)
 {
-	if (day > 31 || day < 1)
-	{
-		throw util::Date::Invalid{ day, month + 1, year + 1900};
-	}
-	if (month > 12 || month < 1)
-	{
-		throw util::Date::Invalid{ day, month + 1, year + 1900};
-	}
-	if (year < 1970)
-	{
-		throw util::Date::Invalid{ day, month + 1, year + 1900};
-	}
-	full_date = {
-		0,
-		0,
-		0,
-		day,
-		month,
-		year,
-		0,
-		0,
-		-1
-	};
+	tm new_date{};
+	new_date.tm_mday = day;
+	new_date.tm_mon = month;
+	new_date.tm_mon = year;
+	new_date.tm_isdst = -1;
+	util::Date::is_Valid(new_date);
+	full_date = new_date;
 }
-
-void is_Valid(tm tm_value, char v, int value)
-{
-	switch (tolower(v))
-	{
-		case 'd':
-		{
-			if (tm_value.tm_mday != value)
-			{
-				throw util::Date::Invalid{ value, tm_value.tm_mon + 1, tm_value.tm_year + 1900 };
-			}
-			break;
-		}
-		case 'm':
-		{
-			if (tm_value.tm_mon != value)
-			{
-				throw util::Date::Invalid{ tm_value.tm_mday + 1, value, tm_value.tm_year + 1900 };
-			}
-		}
-		case 'y':
-		{
-			if (tm_value.tm_year != value)
-			{
-				throw util::Date::Invalid{ tm_value.tm_mday + 1, tm_value.tm_mon + 1, value };
-			}
-		}
-	}
-}
-
 
 int  util::Date::day() const
 {
@@ -77,7 +35,7 @@ void util::Date::day(int value)
 	tm_day.tm_isdst = -1;
 	time_t new_day = mktime(&tm_day);
 
-	is_Valid(*localtime(&new_day), 'd', value);
+	util::Date::is_Valid(*localtime(&new_day));
 
 	_day = new_day;
 }
@@ -94,7 +52,7 @@ void util::Date::month(int value)
 	tm_month.tm_isdst = -1;
 	time_t new_month = mktime(&tm_month);
 
-	is_Valid(*localtime(&new_month), 'm', value);
+	util::Date::is_Valid(*localtime(&new_month));
 
 	_day = new_month;
 }
@@ -111,18 +69,18 @@ void util::Date::year(int value)
 	tm_year.tm_isdst = -1;
 	time_t new_year = mktime(&tm_year);
 
-	is_Valid(*localtime(&new_year), 'y', value);
+	util::Date::is_Valid(*localtime(&new_year));
 
 	_day = new_year;
 }
 
-void util::Date::advance()
+//void util::Date::advance()
+//{
+//	full_date.tm_mday += 24 * 60 * 60;
+//}
+void util::Date::advance(int value = 1)
 {
-	_day += 24 * 60 * 60;
-}
-void util::Date::advance(int value)
-{
-	_day += value * 24 * 60 * 60;
+	full_date.tm_mday += value;
 }
 
 void util::Date::print(std::ostream& out) const
