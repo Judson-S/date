@@ -2,6 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <ctime>
+#include <vector>
 
 namespace util {
 	class Date {
@@ -9,13 +10,13 @@ namespace util {
 		Date();
 		Date(int day, int month, int year);
 
-		time_t day();
+		int day();
 		void day(int value);
 
-		time_t month();
+		int month();
 		void month(int value);
 
-		time_t year();
+		int year();
 		void year(int value);
 
 		void advance();
@@ -30,35 +31,38 @@ namespace util {
 		void print(std::ostream& out);
 
 		static Date now();
-		enum class monthNameClass {
-			January,
-			February,
-			March,
-			April,
-			May,
-			June,
-			July,
-			August,
-			September,
-			October,
-			November,
-			December
-		};
-		enum class dayNameClass {
-			Sunday,
-			Monday,
-			Tuesday,
-			Wednesday,
-			Thursday,
-			Friday,
-			Saturday
-		};
+		
 		struct Invalid {
 			time_t day, month, year;
 		};
 
-		monthNameClass monthName();
-		dayNameClass dayName();
+		std::vector<std::string> monthNames{
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+		};
+		std::vector<std::string> dayNames{
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday"
+		};
+
+		std::string monthName();
+		std::string dayName();
+
 		static Order order;
 		static char separator;
 	private:

@@ -65,9 +65,9 @@ void is_Valid(tm tm_value, char v, int value)
 }
 
 
-time_t  util::Date::day()
+int  util::Date::day()
 {
-	return _day;
+	return full_date.tm_mday;
 }
 void util::Date::day(int value)
 {
@@ -82,9 +82,9 @@ void util::Date::day(int value)
 	_day = new_day;
 }
 
-time_t util::Date::month()
+int util::Date::month()
 {
-	return _month;
+	return full_date.tm_mon;
 }
 void util::Date::month(int value)
 {
@@ -99,9 +99,9 @@ void util::Date::month(int value)
 	_day = new_month;
 }
 
-time_t util::Date::year()
+int util::Date::year()
 {
-	return _year;
+	return full_date.tm_year;
 }
 void util::Date::year(int value)
 {
@@ -155,13 +155,13 @@ util::Date util::Date::now()
 	return today;
 }
 
-util::Date::monthNameClass util::Date::monthName()
+std::string util::Date::monthName()
 {
-	return static_cast<monthNameClass>(full_date.tm_mon);
+	return monthNames[full_date.tm_mon];
 }
-util::Date::dayNameClass util::Date::dayName()
+std::string util::Date::dayName()
 {
-	return static_cast<dayNameClass>(full_date.tm_wday);
+	return dayNames[full_date.tm_wday];
 }
 util::Date::Order util::Date::order = Order::DayMonthYear;
 char util::Date::separator = '/';
