@@ -65,7 +65,7 @@ void is_Valid(tm tm_value, char v, int value)
 }
 
 
-int  util::Date::day()
+int  util::Date::day() const
 {
 	return full_date.tm_mday;
 }
@@ -82,7 +82,7 @@ void util::Date::day(int value)
 	_day = new_day;
 }
 
-int util::Date::month()
+int util::Date::month() const
 {
 	return full_date.tm_mon;
 }
@@ -99,7 +99,7 @@ void util::Date::month(int value)
 	_day = new_month;
 }
 
-int util::Date::year()
+int util::Date::year() const
 {
 	return full_date.tm_year;
 }
@@ -125,7 +125,7 @@ void util::Date::advance(int value)
 	_day += value * 24 * 60 * 60;
 }
 
-void util::Date::print(std::ostream& out)
+void util::Date::print(std::ostream& out) const
 {
 	switch (order)
 	{
@@ -155,11 +155,11 @@ util::Date util::Date::now()
 	return today;
 }
 
-std::string util::Date::monthName()
+std::string util::Date::monthName() const
 {
 	return monthNames[full_date.tm_mon];
 }
-std::string util::Date::dayName()
+std::string util::Date::dayName() const
 {
 	return dayNames[full_date.tm_wday];
 }

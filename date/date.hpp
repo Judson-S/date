@@ -10,13 +10,13 @@ namespace util {
 		Date();
 		Date(int day, int month, int year);
 
-		int day();
+		int day() const;
 		void day(int value);
 
-		int month();
+		int month() const;
 		void month(int value);
 
-		int year();
+		int year() const;
 		void year(int value);
 
 		void advance();
@@ -28,7 +28,7 @@ namespace util {
 			YearMonthDay
 		};
 		
-		void print(std::ostream& out);
+		void print(std::ostream& out) const;
 
 		static Date now();
 		
@@ -60,8 +60,8 @@ namespace util {
 			"Saturday"
 		};
 
-		std::string monthName();
-		std::string dayName();
+		std::string monthName() const;
+		std::string dayName() const;
 
 		static Order order;
 		static char separator;
