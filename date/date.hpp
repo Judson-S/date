@@ -19,7 +19,7 @@ namespace util {
 		int year() const;
 		void year(int value);
 
-		void advance();
+		//void advance();
 		void advance(int value);
 
 		enum class Order {
