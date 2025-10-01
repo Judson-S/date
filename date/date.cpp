@@ -16,9 +16,9 @@ void util::Date::is_Valid(tm tm_value)
 	int year = tm_value.tm_year;
 
 	mktime(&tm_value);
-	if (tm_value.tm_mday == day || tm_value.tm_mon == month || tm_value.tm_year == year)
+	if (tm_value.tm_mday != day || tm_value.tm_mon != month - 1 || tm_value.tm_year != year - 1900)
 	{
-		throw util::Date::Invalid{ day,month + 1,year + 1900};
+		throw util::Date::Invalid{ day,month,year};
 	}
 }
 

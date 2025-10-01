@@ -11,5 +11,12 @@ TEST(DefaultCtor, HasCorrectValue)
 
 TEST(ValueCtor, ThrowsInvalid)
 {
+	util::Date d(4, 19, 2006);
+
+	/*ASSERT_EQ(d.day(), 4);
+	ASSERT_EQ(d.month(), 19);
+	ASSERT_EQ(d.year(), 2006);*/
+
+
 	ASSERT_THROW(util::Date d(1970,1970,1970), util::Date::Invalid);
 }
