@@ -16,9 +16,9 @@ void util::Date::is_Valid(tm tm_value)
 	int year = tm_value.tm_year;
 
 	mktime(&tm_value);
-	if (tm_value.tm_mday != day || tm_value.tm_mon != month - 1 || tm_value.tm_year != year - 1900)
+	if (tm_value.tm_mday != day || tm_value.tm_mon != month || tm_value.tm_year != year)
 	{
-		throw util::Date::Invalid{ day,month,year};
+		throw util::Date::Invalid{ day,month + 1,year + 1900};
 	}
 }
 
@@ -27,7 +27,7 @@ util::Date::Date(int day, int month, int year)
 	tm new_date{};
 	new_date.tm_mday = day;
 	new_date.tm_mon = month - 1;
-	new_date.tm_mon = year - 1900;
+	new_date.tm_year = year - 1900;
 	new_date.tm_isdst = -1;
 	util::Date::is_Valid(new_date);
 	full_date = new_date;
@@ -52,7 +52,7 @@ void util::Date::day(int value)
 
 int util::Date::month() const
 {
-	return full_date.tm_mon  + 1;
+	return full_date.tm_mon + 1;
 }
 void util::Date::month(int value)
 {
