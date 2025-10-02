@@ -43,11 +43,11 @@ void util::Date::day(int value)
 	tm tm_day = *localtime(&curr_time);
 	tm_day.tm_mday = value;
 	tm_day.tm_isdst = -1;
-	time_t new_day = mktime(&tm_day);
+	mktime(&tm_day);
 
-	util::Date::is_Valid(*localtime(&new_day));
+	util::Date::is_Valid(tm_day);
 
-	full_date.tm_mday = new_day;
+	full_date.tm_mday = tm_day.tm_mday;
 }
 
 int util::Date::month() const
@@ -60,11 +60,11 @@ void util::Date::month(int value)
 	tm tm_month = *localtime(&curr_time);
 	tm_month.tm_mon = value - 1;
 	tm_month.tm_isdst = -1;
-	time_t new_month = mktime(&tm_month);
+	mktime(&tm_month);
 
-	util::Date::is_Valid(*localtime(&new_month));
+	util::Date::is_Valid(tm_month);
 
-	full_date.tm_mon = new_month;
+	full_date.tm_mon = tm_month.tm_mon;
 }
 
 int util::Date::year() const
@@ -77,11 +77,11 @@ void util::Date::year(int value)
 	tm tm_year = *localtime(&curr_time);
 	tm_year.tm_year = value - 1900;
 	tm_year.tm_isdst = -1;
-	time_t new_year = mktime(&tm_year);
+	mktime(&tm_year);
 
-	util::Date::is_Valid(*localtime(&new_year));
+	util::Date::is_Valid(tm_year);
 
-	full_date.tm_year = new_year;
+	full_date.tm_year = tm_year.tm_year;
 }
 
 void util::Date::advance()
