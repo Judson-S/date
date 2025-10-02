@@ -99,17 +99,17 @@ void util::Date::print(std::ostream& out) const
 	{
 	case Order::MonthDayYear:
 	{
-		out << full_date.tm_mon << separator << full_date.tm_mday << separator << full_date.tm_year;
+		out << full_date.tm_mon + 1 << separator << full_date.tm_mday << separator << full_date.tm_year + 1900;
 		break;
 	}
 	case Order::DayMonthYear:
 	{
-		out << full_date.tm_mday << separator << full_date.tm_mon << separator << full_date.tm_year;
+		out << full_date.tm_mday << separator << full_date.tm_mon + 1 << separator << full_date.tm_year + 1900;
 		break;
 	}
 	case Order::YearMonthDay:
 	{
-		out << full_date.tm_year << separator << full_date.tm_mon << separator << full_date.tm_mday;
+		out << full_date.tm_year + 1900 << separator << full_date.tm_mon + 1 << separator << full_date.tm_mday;
 		break;
 	}
 	}
